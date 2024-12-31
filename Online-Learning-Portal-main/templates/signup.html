@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/css/signup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="illustration-section">
+            <img src="/templates/images/Register.png" alt="Illustration">
+        </div>
+        <div class="register-section">
+            <img src="/templates/images/Crystal Logo.png" alt="CRYSTAL DELTA Logo" class="logo">
+            
+            <p class="form-description">Please fill out the form to register!</p>
+            <form method="POST" action="/signup">
+                {{form.hidden_tag()}}
+                <div class="input-container">
+                    {{ form.name(class="form-input", id="name", placeholder=" ") }}
+                    {{ form.name.label(for="name", class_="form-label") }}
+                    {% if form.name.errors %}
+                    <ul class="error-list">
+                        {% for error in form.name.errors %}
+                            <li class="error-item">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="input-container">
+                    {{ form.email(class="form-input", id="email", placeholder=" ") }}
+                    {{ form.email.label(for="email", class_="form-label") }}
+                    {% if form.email.errors %}
+                    <ul class="error-list">
+                        {% for error in form.email.errors %}
+                            <li class="error-item">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="input-container">
+                    {{ form.password(class="form-input", id="password", placeholder=" ") }}
+                    {{ form.password.label(for="password", class_="form-label") }}
+                    {% if form.password.errors %}
+                    <ul class="error-list">
+                        {% for error in form.password.errors %}
+                            <li class="error-item">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                </div>
+                <div class="input-container">
+                    {{ form.confirm_password(class="form-input", id="confirm_password", placeholder=" ") }}
+                    {{ form.confirm_password.label(for="name", class_="form-label") }}
+                    {% if form.confirm_password.errors %}
+                    <ul class="error-list">
+                        {% for error in form.confirm_password.errors %}
+                            <li class="error-item">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                </div>
+                {{form.submit(class="button")}}
+            </form>
+            <p class="login-link">Already have an account? <a onclick="window.location.href='/login'">Login</a></p>
+        </div>
+    </div>
+    <script src="rscript.js"></script>
+</body>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Platform</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+</head>
+<body>
+    <div class="container">
+      <nav class="sidebar">
+        <div class="logo">
+          <h2>LEARN++</h2>
+        </div>
+        <ul class="nav-items">
+          <li class="active"><i class="fas fa-home"></i> Dashboard</li>
+          <li><i class="fas fa-book"></i> My Course</li>
+          <li><i class="fas fa-calendar"></i> Schedule</li>
+          <li><i class="fas fa-tasks"></i> Homework</li>
+          <li><i class="fas fa-envelope"></i> Message</li>
+          <li><i class="fas fa-users"></i> Group</li>
+          <li><i class="fas fa-cog"></i> Settings</li>
+        </ul>
+        <button class="logout-btn" onclick="window.location.href='/login'"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </nav>
+      <main class="main-content">
+        <div class="top-bar">
+          <nav class="nav-bar">
+              <div class="menu-icon">
+                  <i class="fas fa-bars"></i>
+              </div>
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search...">
+          </div>
+          <div class="profile">
+            <img src="" alt="Profile" class="profile-pic">
+            <p class="welcome-message">Hi, {{ username }}</p>
+          </div>
+        </div>
+      </nav>
+        <div class="course-section">
+          <h1>Data Science / Automatic Design System</h1>
+          <div class="video-preview">
+            <img src="https://placehold.co/600x200" alt="Course Preview">
+          </div>
+     
+        <div class="progress-section">
+          <h2>My Progress</h2>
+          <div class="progress-cards">
+            <div class="progress-card">
+              <h3>Interaction - I</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius.</p>
+              <p>8 classes - 45 min</p>
+              <div class="card-footer">
+                <div class="stars">
+                  <span data-value="1">&#9733;</span>
+                  <span data-value="2">&#9733;</span>
+                  <span data-value="3">&#9733;</span>
+                  <span data-value="4">&#9733;</span>
+                  <span data-value="5">&#9733;</span>
+                </div>
+                <button class="rating-button">0</button>
+              </div>
+            </div>
+            <div class="progress-card">
+              <h3>Interaction - II</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius.</p>
+              <p>10 classes - 60 min</p>
+              <div class="card-footer">
+                <div class="stars1">
+                  <span data-value="1">&#9733;</span>
+                  <span data-value="2">&#9733;</span>
+                  <span data-value="3">&#9733;</span>
+                  <span data-value="4">&#9733;</span>
+                  <span data-value="5">&#9733;</span>
+                </div>
+                <button class="rating-button">0</button>
+              </div>
+            </div>
+            <div class="progress-card">
+              <h3>Interaction - III</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius.</p>
+              <p>12 classes - 70 min</p>
+              <div class="card-footer">
+                <div class="stars2">
+                  <span data-value="1">&#9733;</span>
+                  <span data-value="2">&#9733;</span>
+                  <span data-value="3">&#9733;</span>
+                  <span data-value="4">&#9733;</span>
+                  <span data-value="5">&#9733;</span>
+                </div>
+                <button class="rating-button">0</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+  
+      <aside class="right-sidebar">
+        <div class="special-classes">
+          <h2> My Special Classes</h2>
+          <p id="booking-status">No special booking yet!</p>
+          <button class="book-now-btn" id="openBookingModal"><i class="fas fa-calendar-plus"></i> Book Now</button>
+  
+          <div id="bookingModal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="closeModal">&times;</span>
+              <h2><i class="fas fa-calendar-alt"></i> Special Classes Booking</h2>
+              <form id="bookingForm" method="POST" action="{{ url_for('book') }}">
+                {{ form.hidden_tag() }}
+                <div class="input-container">
+                  {{ form.course(class="form-group", id="course", placeholder=" ") }}
+                  {{ form.course.label(for="course", class_="form-label") }}
+                  {% if form.course.errors %}
+                      <ul class="error-list">
+                          {% for error in form.course.errors %}
+                              <li class="error-item">{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+              </div>
+                <div class="input-container">
+                  {{ form.trainee(class="form-group", id="trainee", placeholder=" ") }}
+                  {{ form.trainee.label(for="trainee", class_="form-label") }}
+                  {% if form.trainee.errors %}
+                      <ul class="error-list">
+                          {% for error in form.trainee.errors %}
+                              <li class="error-item">{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+              </div>
+                <div class="input-container">
+                  {{ form.date(class="form-group", id="date", placeholder=" ") }}
+                  {{ form.date.label(for="date", class_="form-label") }}
+                  {% if form.date.errors %}
+                      <ul class="error-list">
+                          {% for error in form.date.errors %}
+                              <li class="error-item">{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+              </div>
+                <div class="input-container">
+                  {{ form.slot(class="form-group", id="slot", placeholder=" ") }}
+                  {{ form.slot.label(for="slot", class_="form-label") }}
+                  {% if form.slot.errors %}
+                      <ul class="error-list">
+                          {% for error in form.slot.errors %}
+                              <li class="error-item">{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+              </div>
+                <div class="button-container">
+                  <button type="button" id="cancelBooking">Cancel</button>
+                  {{form.submit(class="button")}}
+              </div>
+              </form>
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="schedule">
+          <h2>Schedule - Upcoming</h2>
+        
+          <div class="class-card">
+            <div>
+              <span class="dot"></span>
+              <span class="class-title">English Classes</span><br>
+              <span class="teacher-name">Tika sarak s.pd</span>
+            </div>
+            <span class="arrow">&#x2794;</span>
+          </div>
+        
+          <div class="class-card">
+            <div>
+              <span class="dot"></span>
+              <span class="class-title">Physical Classes</span><br>
+              <span class="teacher-name">   Tika sarak s.pd</span>
+            </div>
+            <span class="arrow">&#x2794;</span>
+          </div>
+        
+          <div class="class-card">
+            <div>
+              <span class="dot"></span>
+              <span class="class-title">Mathematic Classes</span><br>
+              <span class="teacher-name">    Tika sarak s.pd</span>
+            </div>
+            <span class="arrow">&#x2794;</span>
+          </div>
+        </div>
+  
+        <div class="assignments">
+          <h2> Your Assignments</h2>
+          <div class="lesson-container">
+            <div class="lesson">Lesson 1: Tech ops of Data Sciences</div>
+            <div class="lesson">Lesson 4: Motion and Force of power energy</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
