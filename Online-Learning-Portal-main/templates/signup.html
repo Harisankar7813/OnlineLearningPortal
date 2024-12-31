@@ -9,10 +9,10 @@
 <body>
     <div class="container">
         <div class="illustration-section">
-            <img src="/templates/images/Register.png" alt="Illustration">
+            <img src="{{ url_for('static', filename='images/Register.png') }}" alt="Illustration">
         </div>
         <div class="register-section">
-            <img src="/templates/images/Crystal Logo.png" alt="CRYSTAL DELTA Logo" class="logo">
+            <img src="{{ url_for('static', filename='images/Crystal Logo.png') }}" alt="CRYSTAL DELTA Logo" class="logo">
             
             <p class="form-description">Please fill out the form to register!</p>
             <form method="POST" action="/signup">

@@ -127,7 +127,8 @@ box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
 }
 
 .video-preview img {
-  width: 100%;
+  width: 800px;
+  height: 350px;
   border-radius: 8px;
   margin-top: 1rem;
     }
